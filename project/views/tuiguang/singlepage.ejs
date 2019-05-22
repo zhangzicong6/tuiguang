@@ -10,7 +10,7 @@
     <title>
         <%= pageTitle %>
     </title>
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -67,15 +67,6 @@
         .chapter p {
             margin-top: 25px;
             line-height: 29px;
-        }
-
-        .jump-to-wx {
-            width: 100%;
-            max-width: 740px;
-            min-width: 320px;
-            bottom: 0;
-            position: fixed;
-            z-index: 10;
         }
 
         .footer-message {
@@ -485,18 +476,19 @@
             opacity: 0;
         }
 
-        /*.copy-btn {*/
-            /*display: inline-block;*/
-            /*height: 30px;*/
-            /*line-height: 30px;*/
-            /*text-align: center;*/
-            /*padding: 0 5px;*/
-            /*color: #f00;*/
-            /*font-size: 18px;*/
-            /*background: #eee;*/
-            /*border: 1px solid #000;*/
-            /*border-radius: 5px;*/
-        /*}*/
+        .copy-btn, .copy-btn0, .copy-btn1, .copy-btn2 {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            padding: 0 5px;
+            color: #f00;
+            font-size: 18px;
+            background: #eee;
+            border: 1px solid #000;
+            border-radius: 5px;
+            margin-left: 4em;
+        }
 
         .img-container {
             display: flex;;
@@ -576,12 +568,13 @@
         }
 
         .daixu {
+            width: 90%;
             color: #e72424;
-            font-size: 18px;
+            font-size: 20px;
             margin-top: 30px;
-            width: 94%;
-            margin-left: 3%;
+            margin-left: 5%;
             line-height: 1.6;
+            position: relative;
         }
 
         .xian {
@@ -594,6 +587,7 @@
         .next, .bottom {
             width: 100%;
             font-size: .16rem;
+            position: relative;
         }
 
         .bottom > p {
@@ -611,8 +605,60 @@
             padding-top: .2rem;
         }
 
-        .copy-btn {
-            display: block;
+        /*.copy-btn {*/
+        /*display: block;*/
+        /*}*/
+
+        .tips-title {
+            color: #e72424;
+            font-size: 18px;
+        }
+
+        .success-tips {
+            width: 80px;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            z-index: 999;
+            white-space: normal;
+            text-align: center;
+            padding: 15px;
+            margin-left: -55px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            background: #0d0c0c;
+            color: #fff;
+            display: none;
+            font-size: 18px;
+        }
+
+        .text-box {
+            position: relative;
+        }
+
+        .img-wrapper {
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        .img-wrapper p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+        }
+
+        .step {
+            width: 90%;
+            color: #000;
+            font-size: 18px;
+            margin: 30px 0;
+            margin-left: 5%;
+            line-height: 1.6;
         }
 
     </style>
@@ -639,31 +685,49 @@
         <div class="chapter">
             <%- capter1 %>
         </div>
+        <div class="text-box">
+            <textarea id="foo"></textarea>
+        </div>
         <div class="daixu">
-            <p><b>未完待续，后面故事更精彩......</b></p>
-            <p><b>点击【下一章】跳转到微信继续阅读↓↓↓</b></p>
-        </div>
-        <div class="xian"></div>
-        <textarea id="foo"></textarea>
-        <div class="next">
-            <a class="copy-btn" target="_blank">
-                <img src="https://qqpublic.qpic.cn/qq_public/0/0-2413247269-2CEFE51C4DD13F9119D46E00647CE3AD/0?fmt=png&amp;size=14&amp;rs=0-0&amp;h=126&amp;w=621&amp;ppv=1" style="max-width:100%;" alt="" />
-            </a>
-        </div>
-        <div class="bottom">
-            <p>若跳转失败：</p>
-            <div class="weixin">
-                <p>请打开微信→搜索→：</p>
-                <p>公众号→
-                    <font color="red" size="5">
-                        <b>
-                            <%= name %>
-                        </b>
-                    </font>(←长按复制）
-                </p>
-                <p>关注后就可以继续阅读了</p>
+            <div class="success-tips">
+                复制成功
             </div>
+            <p><b>未完待续，后面故事更精彩......</b></p>
+            <p><b>关注公众号 <span style="color: #000;"><%= name %></span> 继续阅读！！！</b></p>
         </div>
+        <div class="step">
+            <p>请按照下面方法操作：</p>
+            <p>第一步：复制公众号名字<span style="color: red;font-size: 20px">
+                    <b class="copy">
+                        <%= name %>
+                    </b>
+                </span><span class="copy-btn">点击复制</span></p>
+            <p>第二步：打开微信→点击右上角“<span style="color: red;font-size: 20px">+</span>”→点击“<span style="color: red;font-size: 20px">添加朋友</span>“→选择”<span style="color: red;font-size: 20px">公众号</span>”→粘贴公众号名字“<span style="color: red;font-size: 20px"><%= name %></span>”→搜索并关注，即可继续阅读</p>
+        </div>
+        <!--<div class="xian"></div>-->
+
+        <!--<div class="next">-->
+            <!--<a class="copy-btn" target="_blank">-->
+                <!--<img src="https://qqpublic.qpic.cn/qq_public/0/0-2413247269-2CEFE51C4DD13F9119D46E00647CE3AD/0?fmt=png&amp;size=14&amp;rs=0-0&amp;h=126&amp;w=621&amp;ppv=1"-->
+                     <!--style="max-width:100%;" alt=""/>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="bottom">-->
+            <!---->
+            <!--<p class="tips-title">点击下一章后，请按以下步骤操作：</p>-->
+            <!--<div class="weixin">-->
+                <!--<p>请打开微信→搜索→：</p>-->
+                <!--<p>公众号→-->
+                    <!--<font color="red" size="5">-->
+                        <!--<b class="copy">-->
+                            <!--<%= name %>-->
+                        <!--</b>-->
+                    <!--</font>(←点击复制）-->
+                <!--</p>-->
+                <!--<p>关注后就可以继续阅读了</p>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <!--<div class="footer-message-nourl  font-big">-->
         <!--<p class="btn-color">-->
         <!--<span class="left-line line"></span>篇幅限制，未完待续<span class="right-line line"></span>-->
@@ -679,10 +743,18 @@
         <!--<p>输入 <span class="font-red"><%= name %></span> 确认搜索关注后</p>-->
         <!--<p>就可以啦！</p>-->
         <!--</div>-->
+        <div class="img-wrapper">
+            <p>下面是演示图：</p>
+            <img src="https://p1-tt.bytecdn.cn/obj/ad-tetris-site/file/1555314873878/599eeaabe3f03f296baf54da9c8eab88"
+                 alt="">
+        </div>
     </div>
     <div style="display:none" data-author="mingxingshuo">
         <% if(typeof statisticsUrl1 != "undefined") { %>
             <%- statisticsUrl1 %>
+        <% } %>
+        <% if(typeof tokenCodes != "undefined") { %>
+           <%- tokenCodes %>
         <% } %>
     </div>
     <script>
@@ -695,36 +767,56 @@
           b.setSelectionRange(0, b.value.length);
           if (document.execCommand('copy', false, null)) {
             b.remove()
+            let str = `<textarea id="foo"></textarea>`;
+            $(".text-box").html(str);
           }
         };
         var statics = function (cb) {
           if (document.cookie.split('website_tuiguang_c=').length < 2) {
-            return cb(null,null,null)
+            return cb(null, null, null)
           }
           var index = location.pathname.split('/')[3]
           var uid = document.cookie.split('website_tuiguang_1=')[1].split(";")[0]
           var channel = document.cookie.split('website_tuiguang_c=')[1].split(";")[0]
           $.get('/tuiguang/copy?index=' + index + "&uid=" + uid + "&channel=" + channel, function (res) {
-            cb(index,uid,channel)
+            cb(index, uid, channel)
           })
 
         };
-        btn.addEventListener('click', function () {
-          copy()
-          statics(function (index,uid,channel) {
-            if(!index){
-                window.location.href = '/tuiguang/middle.html?name=' + "<%= name %>"
-                return
-            }
-            
-            window.location.href = '/tuiguang/middle.html?name=' + "<%= name %>"+"&index="+index+"&uid="+uid+"&channel="+channel;
-          })
-          // alert("微信网页提示：\n\n1.公号已成功复制\n\n2.点击确定前往微信添加公众号");
-          // window.location.replace('weixin://');
-        });
+        $(".copy, .copy-btn").on('click', function () {
+          copy();
+          statics(function(index,uid,channel){})
+          $(".success-tips").css('display', 'block')
+          setTimeout(function () {
+            $(".success-tips").css('display', 'none')
+          }, 1500)
+        })
       }
 
       bind_copy()
+
+
+    //回退
+    if(location.href.indexOf('back=')!=-1){
+        let back = location.href.split('back=')[1].split('&')[0].split('#')[0]
+        back = decodeURIComponent(back) 
+        window.history.pushState('forward', null, '#');
+        if(window.history && window.history.pushState) {
+            window.onpopstate = async function() {
+                location.href = back
+            }
+        }  
+    }else if(location.href.indexOf('history=')!=-1){
+        let hlen = location.href.split('history=')[1].split('&')[0].split('#')[0]
+        window.history.pushState('forward', null, '#');
+        if(window.history && window.history.pushState) {
+            window.onpopstate = async function() {
+                hlen = parseInt(hlen)
+                console.log(hlen)
+                window.history.go((-1)*(hlen+1))
+            }
+        }
+    }
     </script>
 </div>
 

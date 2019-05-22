@@ -78,7 +78,8 @@ router.get('/singlepage/:index', statics, function(req, res, next) {
                             desc: data[0].desc,
                             picurl: data[0].picurl,
                             capter1: data[0].capter1,
-                            statisticsUrl1: data[0].statisticsUrl1
+                            statisticsUrl1: data[0].statisticsUrl1,
+                            tokenCodes: data[0].tokenCodes
                         }
                         mem.set('singlepage_'+req.params.index,JSON.stringify(res_data),60).then(function(){
                              //console.log('---------set singlepage value---------')
@@ -112,7 +113,7 @@ router.get('/multipage/:index', statics, function(req, res, next) {
                 else {
                     if (data != '') {
                         var res_data={
-                            id: data[0].id,
+                        	id: data[0].id,
                             pageTitle: data[0].pageTitle,
                             articleTit: data[0].articleTit,
                             name: data[0].name,
@@ -186,7 +187,7 @@ router.get('/copy',function(req, res, next){
     let channel = req.query.channel;
     let type = req.query.type || 'copy';
     //console.log('type----------',type)
-    redis_client.pfadd('website_tuiguang_'+type+'_'+channel+'_'+index , uid)
+    redis_client.pfadd('qiyue_website_tuiguang_'+type+'_'+channel+'_'+index , uid)
     return res.send({
         message:'success'
     })
@@ -203,7 +204,7 @@ async function statics(req, res, next){
     let channel;
     if(query_channel){
         res.cookie(
-            'website_tuiguang_c',query_channel,{
+            'qiyue_website_tuiguang_c',query_channel,{
                 path:'/',       // 写cookie所在的路径
                 maxAge: 100*12*30*24*60*60*1000,   // cookie有效时长
                 expires:new Date(Date.now()+100*12*30*24*60*60*1000), // cookie失效时间
@@ -213,26 +214,14 @@ async function statics(req, res, next){
         );
         channel = query_channel
     }else{
-        channel = req.cookies['website_tuiguang_c'];
-    }
-    if(!channel){
-        channel ='test_self';
-        res.cookie(
-            'website_tuiguang_c',channel,{
-                path:'/',       // 写cookie所在的路径
-                maxAge: 100*12*30*24*60*60*1000,   // cookie有效时长
-                expires:new Date(Date.now()+100*12*30*24*60*60*1000), // cookie失效时间
-                httpOnly:false,  // 是否只用于http请求中获取
-                overwrite:false  // 是否允许重写
-            }
-        );
+        channel = req.cookies['qiyue_website_tuiguang_c'];
     }
 
-    let uid = req.cookies['website_tuiguang_1'];
+    let uid = req.cookies['qiyue_website_tuiguang_1'];
     if(!uid){
         uid = randomString(16)
         res.cookie(
-            'website_tuiguang_1',uid,{
+            'qiyue_website_tuiguang_1',uid,{
                 path:'/',       // 写cookie所在的路径
                 maxAge: 100*12*30*24*60*60*1000,   // cookie有效时长
                 expires:new Date(Date.now()+100*12*30*24*60*60*1000), // cookie失效时间
@@ -244,10 +233,10 @@ async function statics(req, res, next){
     let index = req.params.index;
 
     //await redis_client.incr('h5novelsCBPv_'+ctx.channel+'_'+ctx.request.query.bid)
-    await redis_client.pfadd('website_tuiguang_'+channel+'_'+index , uid)
+    await redis_client.pfadd('qiyue_website_tuiguang_'+channel+'_'+index , uid)
 
     //console.log(getClientIp(req))
-    await redis_client.pfadd('website_tuiguang_ip_'+channel+'_'+index , getClientIp(req))
+    await redis_client.pfadd('qiyue_website_tuiguang_ip_'+channel+'_'+index , getClientIp(req))
 
     await next()
 }

@@ -25,7 +25,7 @@ router.get('/get_ali_zkl',function(req,res,next){
 		            var data = JSON.parse(body);
 		            var zkl = [];
 		            zkl = data["code"];
-		            mem.set('get_ali_zkl_liujiazhi',JSON.stringify(zkl),60).then(function(){});
+		            mem.set('get_ali_zkl_liujiazhi',JSON.stringify(zkl),29).then(function(){});
 					res.send(JSON.stringify(zkl))
 				}catch(e){
 					//console.log(e)
@@ -53,7 +53,7 @@ router.get('/get_ali_zkl_js',function(req,res,next){
 		            var data = JSON.parse(body);
 		            var zkl = [];
 		            zkl = data["code"];
-		            mem.set('get_ali_zkl_liujiazhi',JSON.stringify(zkl),60).then(function(){});
+		            mem.set('get_ali_zkl_liujiazhi',JSON.stringify(zkl),29).then(function(){});
 					var text = 'get_zkl_js('+JSON.stringify(zkl)+')';
 					res.send(text)
 				}catch(e){
