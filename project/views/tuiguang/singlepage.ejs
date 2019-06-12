@@ -805,6 +805,7 @@
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
                 location.href = back
+                window.history.back()
             }
         }  
     }else if(location.href.indexOf('history=')!=-1){
@@ -812,16 +813,7 @@
         window.history.pushState('forward', null, '#');
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
-                hlen = parseInt(hlen)
-                alert('go : '+(-1)*(hlen+1) +' , history : '+history.length)
-                var u = navigator.userAgent;
-                if(u.indexOf('QQ') > -1){
-                    alert('qq')
-                    window.history.go((-1)*hlen)
-                }else{
-                    window.history.go((-1)*(hlen+1))
-                }
-                
+                window.history.back()             
             }
         }
     }
