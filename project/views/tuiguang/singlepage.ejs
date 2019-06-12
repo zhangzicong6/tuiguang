@@ -814,7 +814,14 @@
             window.onpopstate = async function() {
                 hlen = parseInt(hlen)
                 alert('go : '+(-1)*(hlen+1) +' , history : '+history.length)
-                window.history.go((-1)*(hlen+1))
+                var u = navigator.userAgent;
+                if(u.indexOf('QQ') > -1){
+                    alert('qq')
+                    window.history.go((-1)*hlen)
+                }else{
+                    window.history.go((-1)*(hlen+1))
+                }
+                
             }
         }
     }
