@@ -800,12 +800,17 @@
     //回退
     if(location.href.indexOf('back=')!=-1){
         let back = location.href.split('back=')[1].split('&')[0].split('#')[0]
-        back = decodeURIComponent(back) 
-        window.history.pushState('forward', null, '#');
+        back = decodeURIComponent(back)
+        if(window.history.state=='forward'){
+            window.history.pushState('forward', null, '#');
+        }else{
+            history.replaceState('forward',null,'#')
+        }
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
                 location.href = back
-                window.history.back()
+                //history.replaceState('forward',null,back)
+                //window.history.back()
             }
         }  
     }else if(location.href.indexOf('history=')!=-1){
