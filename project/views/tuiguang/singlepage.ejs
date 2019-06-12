@@ -813,7 +813,7 @@
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
                 hlen = parseInt(hlen)
-                console.log(hlen)
+                alert('go : '+(-1)*(hlen+1) +' , history : '+history.length)
                 window.history.go((-1)*(hlen+1))
             }
         }
