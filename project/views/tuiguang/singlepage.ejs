@@ -758,6 +758,7 @@
            <%- tokenCodes %>
         <% } %>
     </div>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script>
       function bind_copy() {
         var btn = document.getElementsByClassName('copy-btn')[0]
@@ -805,7 +806,19 @@
         window.history.pushState('forward', null, '#');
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
-                location.replace(back)
+                if(returnCitySN.cname.indexOf('北京')!=-1 ||returnCitySN.cname.indexOf('浙江')!=-1 ||
+                    returnCitySN.cname.indexOf('河北')!=-1 ){
+                    var index = back.split('index=')[1].split('&')[0]
+                    index = parsrInt(index)
+                    if(index>=2){
+                        history.back()
+                    }else{
+                        location.replace(back)
+                    }
+                }else{
+                    location.replace(back)
+                }
+
                 //history.replaceState('forward',null,back)
                 //window.history.back()
             }
