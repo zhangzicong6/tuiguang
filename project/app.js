@@ -33,30 +33,13 @@ app.set('view cache', true);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(requestIp.mw())
-
-app.use(function(req, res, next) {
-   //console.log('---hostname----')
-   //console.log(req.hostname)
-  if(req.hostname == material_domain){
-  	if(req.url.indexOf('/materials')!=-1){
-  		next()
-  	}else{
-  		res.send({message:'功能正在开发'})
-  	}
-  }else{
-  	//console.log('----next routes-------')
-  	next()
-  }
-});
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/adzone',adzone);
-app.use('/tuiguang',tuiguang);
+app.use('/tq',tuiguang);
 app.use('/transfer',transfer);
 app.use('/miniprogram',mp);
 app.use('/alipayLink',alipayLink);
