@@ -104,7 +104,7 @@ function getLink(img,value){
 }
 
 function statics(img,value){
-    redis_client.incr('website_AdMaterial_show_'+value.id+'_'+img.sign).then(function(){})
+    //redis_client.incr('website_AdMaterial_show_'+value.id+'_'+img.sign).then(function(){})
 }
 
 module.exports = router;
