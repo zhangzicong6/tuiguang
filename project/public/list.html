@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://xin4j.com./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n# -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/jquery-3.3.1.min.js"></script>
+    <style>
+        body{background: #282c2d;text-align:center}
+        a{text-decoration: none}
+        body>div{width: 19%;float: left;padding: 0 7%;}
+        body>div>a>p:first-child{width: 100%;overflow: hidden;border-radius:50%;border: double 2px #222;margin-bottom: 0}
+        body>div>a>p:last-child{font-size: 0.8em;color:white;margin: 0.4em 0}
+        body>div>a img{width: 100%;}
+        /* 触发弹窗图片的样式 */
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #myImg:hover {opacity: 0.7;}
+
+        /* 弹窗背景 */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+        /* 图片 */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* 文本内容 */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* 添加动画 */
+        .modal-content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {-webkit-transform:scale(0)}
+            to {-webkit-transform:scale(1)}
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        /* 关闭按钮 */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 小屏幕中图片宽度为 100% */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 70%;
+            }
+        }
+    </style>
+    <script>
+
+        var mpArray = [
+            'https://mp.weixin.qq.com/s?__biz=MzUyMTk2NTc4NQ==&mid=2247483661&idx=1&sn=54a321cd5894792b2652cd59e68e0406&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU3NDczNzEwNw==&mid=2247483654&idx=1&sn=c93aa2efd401a337c0f3ba17794bc84a&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=Mzg4ODAyOTM1MA==&mid=2247483654&idx=1&sn=920b1bb281d0f250554fb9de1f99739b&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzUyNzk3MzgxMQ==&mid=2247483657&idx=1&sn=eaeca121349bc76effebfefd9daa9866&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU5OTc1MDk0Mw==&mid=2247483657&idx=1&sn=58330d18c5b61e3ec4a19594add9bd94&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzUzODk3Mzc0Mg==&mid=2247483655&idx=1&sn=404ce14bb3d14355dec86f472dc3e136&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzUzODk3Mzc0Mg==&mid=2247483655&idx=1&sn=404ce14bb3d14355dec86f472dc3e136&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=Mzg5NDAzNjExNA==&mid=2247483655&idx=1&sn=1ab606207d7d2f326daabd5f18f8eb44&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=Mzg3NjAzNjIzNw==&mid=2247483655&idx=1&sn=fe417aed6dca75fb9c6edc3776b6302d&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU5NDc1MDA4OQ==&mid=2247483657&idx=1&sn=dd7d5600d447e72bd292587fa5f56811&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU4OTc0OTExOQ==&mid=2247483655&idx=1&sn=b37ddcb3789f0c99f9dec84e26f07b6c&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU1MTk3MjU5MA==&mid=2247483655&idx=1&sn=96dd5f38057abf37f179fd792d72b348&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=Mzg2NzAzNjA5Ng==&mid=2247483655&idx=1&sn=61fb8ce54d24d283a1e5e774a4586aff&scene=21#wechat_redirect',
+            'https://mp.weixin.qq.com/s?__biz=MzU3Mzc0OTE2MQ==&mid=2247483655&idx=1&sn=b5477de48655846e5f7879e05037eb77&scene=21#wechat_redirect'
+        ];
+
+        function xxx() {
+            // var link = links[Math.floor((Math.random() * links.length))];
+            // var link = "http://gg6.lliuy.com/novel/mynovel?info=nrff&sc=jzxs-list";
+            // window.location.href = link;
+            var num = Math.floor(Math.random() * mpArray.length);
+            window.location = mpArray[num];
+        }
+
+
+        pushHistory();
+        //监听浏览器后退事件
+        window.addEventListener("popstate",
+            function(e) {
+                //转向指定的URL
+                location.href= 'http://novel.0uwkk.cn/recommend/list/1';
+            }, false);
+        //清空浏览器历史记录
+        function pushHistory() {
+            var url = "#";
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+
+    </script>
+</head>
+
+<body>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(1)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(2)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(3)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(4)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(5)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(6)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(7)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(8)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(9)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(10)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(11)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(12)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(13)"></p><p>关注进入</p></a></div>
+<div><a href="javascript:xxx();"><p><img src="./xsplusro3hmGmeE9xsslashYuxsslashjZd4kwE1AykYqH79n_files/0(14)"></p><p>关注进入</p></a></div>
+
+</body></html>

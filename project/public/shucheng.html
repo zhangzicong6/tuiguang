@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta name="referrer" content="never"> 
+	<title>支持正版，关注我们</title>
+	
+	<style id="htmlzoom">
+		html {
+			font-size: 100px;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.container {
+			display: flex;
+			flex-direction: column;	
+			align-items: center;
+			width: 100%;
+			margin-top: .8rem;
+		}
+		h3 {
+			font-size: .2rem;
+			color: rgb(130, 65, 77);
+			font-weight: 500;
+			margin-bottom: .2rem;
+		}
+		p {
+			font-size: .16rem;
+			color: rgb(155, 155, 155);
+		}
+		span {
+			font-size: .18rem;
+			color: rgb(71, 71, 71);
+		}
+		img {
+			width: 2.4rem;
+			display: block;
+			margin: .2rem 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h3>关注作者继续阅读</h3>
+		<p>由于版权问题，请关注后继续阅读</p>
+		<div id="content"></div>
+		<h3>长按上图，识别二维码关注</h3>
+	
+	</div>
+
+	<iframe id="postwx"></iframe>
+	<div id="postdiv"></div>
+
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		function getUrl(url) {
+			var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+            url = http + '//cors-anywhere.herokuapp.com/'+url;
+            $.ajax({
+			    url: url,
+			    type: 'get',
+			    /*cache: false,
+			    contentType: false,
+			    processData: false,*/
+			    success: function(data) {
+			        if(data){
+			        	data = data.replace(/data-src/g, "src").replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/g, '').replace(/https/g,'http');
+			        	console.log(data);
+			        	let htmlSrc = 'data:text/html;charset=utf-8,' + data;
+			        	$('#postwx').attr('src',htmlSrc)
+			        }
+			    },
+			    error: function(e) {}
+			});
+		}
+
+		$.ajaxPrefilter( function (options) {
+    　　　　if (options.crossDomain && jQuery.support.cors) {
+        　　　　var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+        　　　　options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+    　　　　};
+　　　　 });
+　　　　var showSrc = 'https://mp.weixin.qq.com/s/79s2hL1w6b37KFUuBkYCPw'
+　　　　$.get( showSrc, function (response){
+　　　　　　　　var html = response;
+　　　　　　　　html = html.replace(/data-src/g, "src").replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/g, '').replace(/https/g,'http');
+
+			$('#postwx').attr('srcdoc',html)
+			//$('#postdiv').load(html);
+			//$('#postdiv')[0].innerHTML = html
+		});
+	</script>
+	
+</body>
+
+</html>

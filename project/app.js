@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const requestIp = require('request-ip');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var adzone = require('./routes/adzone');
@@ -14,8 +16,9 @@ var mp = require('./routes/miniProgram');
 var alipayLink = require('./routes/alipayLink');
 var novelTransfer = require('./routes/novelTransfer');
 var recommend = require('./routes/recommend');
-var materials = require('./routes/materials');
+//var materials = require('./routes/materials');
 var material_domain = require('./conf/proj.json').material_domain;
+var zsy = require('./routes/zsy');
 
 var app = express();
 
@@ -30,6 +33,8 @@ app.set('view cache', true);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(requestIp.mw())
 
 app.use(function(req, res, next) {
    //console.log('---hostname----')
@@ -57,7 +62,9 @@ app.use('/miniprogram',mp);
 app.use('/alipayLink',alipayLink);
 app.use('/novel_transfer',novelTransfer);
 app.use('/recommend',recommend);
-app.use('/materials',materials);
+app.use('/zsy',zsy);
+
+//app.use('/materials',materials);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

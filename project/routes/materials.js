@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var AdMaterialModel = require('../model/AdMaterial.js');
 var mem = require('../util/mem.js')
-const asyncRedis = require("async-redis");
-const redis_client = asyncRedis.createClient();
 
 router.get('/img/:id',function(req, res, next){
     var id = req.params.id;

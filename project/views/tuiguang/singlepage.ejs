@@ -67,7 +67,6 @@
         .chapter p {
             margin-top: 25px;
             line-height: 29px;
-            font-size: 19px !important;
         }
 
         .footer-message {
@@ -617,8 +616,8 @@
 
         .success-tips {
             width: 80px;
-            position: absolute;
-            top: -50px;
+            position: fixed;
+            top: 30%;
             left: 50%;
             z-index: 999;
             white-space: normal;
@@ -660,6 +659,13 @@
             margin: 30px 0;
             margin-left: 5%;
             line-height: 1.6;
+        }
+
+        .company {
+            text-align: center;
+            font-size: 18px;
+            padding: 10px 0 20px;
+            color: #999;
         }
 
     </style>
@@ -749,6 +755,7 @@
             <img src="https://p1-tt.bytecdn.cn/obj/ad-tetris-site/file/1555314873878/599eeaabe3f03f296baf54da9c8eab88"
                  alt="">
         </div>
+        <p class="company">陕西汇文出版传媒有限公司</p>
     </div>
     <div style="display:none" data-author="mingxingshuo">
         <% if(typeof statisticsUrl1 != "undefined") { %>
@@ -758,7 +765,6 @@
            <%- tokenCodes %>
         <% } %>
     </div>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script>
       function bind_copy() {
         var btn = document.getElementsByClassName('copy-btn')[0]
@@ -791,6 +797,7 @@
           $(".success-tips").css('display', 'block')
           setTimeout(function () {
             $(".success-tips").css('display', 'none')
+            window.location.replace('weixin://');
           }, 1500)
         })
       }
@@ -801,34 +808,21 @@
     //回退
     if(location.href.indexOf('back=')!=-1){
         let back = location.href.split('back=')[1].split('&')[0].split('#')[0]
-        back = decodeURIComponent(back)
-        //if(window.history.state!='forward'){
+        back = decodeURIComponent(back) 
         window.history.pushState('forward', null, '#');
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
-                if(returnCitySN.cname.indexOf('北京')!=-1 ||returnCitySN.cname.indexOf('浙江')!=-1 ||
-                    returnCitySN.cname.indexOf('河北')!=-1 ){
-                    var index = back.split('index=')[1].split('&')[0]
-                    index = parsrInt(index)
-                    if(index>=2){
-                        history.back()
-                    }else{
-                        location.replace(back)
-                    }
-                }else{
-                    location.replace(back)
-                }
-
-                //history.replaceState('forward',null,back)
-                //window.history.back()
+                location.href = back
             }
-        }  
+        }
     }else if(location.href.indexOf('history=')!=-1){
         let hlen = location.href.split('history=')[1].split('&')[0].split('#')[0]
-        //window.history.pushState('forward', null, '#');
+        window.history.pushState('forward', null, '#');
         if(window.history && window.history.pushState) {
             window.onpopstate = async function() {
-                window.history.back()             
+                hlen = parseInt(hlen)
+                console.log(hlen)
+                window.history.go((-1)*(hlen+1))
             }
         }
     }
