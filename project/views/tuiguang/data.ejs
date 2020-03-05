@@ -26,8 +26,7 @@
 <body bgcolor="<%= bgcolor %>">
 <div class="container">
     <div class="banner-head">
-        <img src="<%= picurl %>"
-             alt="">
+        <img src="" data-src="<% if(typeof picurl_ali != 'undefined' && picurl_ali ) {%><%=  picurl_ali%><%} else { %><%= picurl %><%}%>" alt="">
     </div>
     <div class="content">
         <div class="chapter">
@@ -96,7 +95,7 @@
                 </div>
             </div>
         </section>
-        <img style="margin-top: .8rem" src="<%= finalImg %>" alt="">
+        <img style="margin-top: .8rem" data-src="<% if(typeof finalImg_ali != 'undefined' && finalImg_ali ) {%><%=  finalImg_ali%><%} else { %><%= finalImg %><%}%>" alt="">
         <p class="company"><%= company %></p>
         <div class="popup-wrap">
             <div class="popup-box" onclick="return false;">
@@ -145,6 +144,14 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="/toutiao/clipboard.min.js"></script>
 <script>
+    
+    $(function () {
+        $("img").each(function () {
+            let src = $(this).data("src")
+            $(this).attr("src", src)
+        })
+    });
+
     <% if (!isClick) { %>
     document.body.oncopy = function () {
         $('.wechat-btn').click();

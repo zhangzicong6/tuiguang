@@ -48,7 +48,10 @@ router.get('/d/:index', async (req, res, next) => {
     tuiguang_id : req.params.index,
     ip : ip,
     td_clickid : req.query.clickid,
-    td_url : encodeURIComponent('https://ttj.wxlink.szyuexin.com.cn'+req.originalUrl)
+    td_url : encodeURIComponent('https://ttj.wxlink.szyuexin.com.cn'+req.originalUrl),
+    wx_openid : '',
+    td_cb_flag : 0,
+    ispay : 0
   }
   await PlatformDataModel.findOneAndUpdate({uni_ip_h_ua:toutiao_data.uni_ip_h_ua},toutiao_data,{upsert: true})
 
@@ -68,7 +71,9 @@ router.get('/d/:index', async (req, res, next) => {
         gonghao_id: data[0].gonghao_id,
         desc: data[0].desc,
         picurl: data[0].picurl,
+        picurl_ali : data[0].picurl_ali,
         finalImg: data[0].finalImg,
+        finalImg_ali : data[0].finalImg_ali,
         gonghaoLogo: data[0].gonghaoLogo,
         capter1: data[0].capter1,
         tokenCodes: data[0].tokenCodes,

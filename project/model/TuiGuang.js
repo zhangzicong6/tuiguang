@@ -11,6 +11,10 @@ var TuiGuangSchema = new Schema({
   name: String,
   desc: String,
   picurl: String,
+  picurl_ali :{
+    type : String,
+    default : ''
+  },
   capter1: String,
   capter2: String,
   linkUrl: String,
@@ -25,6 +29,10 @@ var TuiGuangSchema = new Schema({
     default: ""
   },
   finalImg: {
+    type: String,
+    default: ""
+  },
+  finalImg_ali: {
     type: String,
     default: ""
   },
