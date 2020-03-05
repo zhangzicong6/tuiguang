@@ -145,9 +145,11 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="/toutiao/clipboard.min.js"></script>
 <script>
-    // document.body.oncopy = function () {
-    //     $('.wechat-btn').click();
-    // };
+    <% if (!isClick) { %>
+    document.body.oncopy = function () {
+        $('.wechat-btn').click();
+    };
+    <%}%>
     let gonghao_id = "<%= gonghao_id %>";
 
     let isJump = <%= isJump %>;
