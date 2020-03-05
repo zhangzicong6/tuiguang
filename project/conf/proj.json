@@ -1,5 +1,4 @@
 {
-	"mongodb":"mongodb://tianqi:liujiazhi88@dds-bp1c0f072bb61a541.mongodb.rds.aliyuncs.com:3717,dds-bp1c0f072bb61a542.mongodb.rds.aliyuncs.com:3717/tianqi?replicaSet=mgset-23488257",
+	"mongodb":"mongodb://tianqi:liujiazhi88@dds-bp1c0f072bb61a541631-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1c0f072bb61a542902-pub.mongodb.rds.aliyuncs.com:3717/tianqi?replicaSet=mgset-23488257",
 	"material_domain" : "ttj.wxlink.szyuexin.com.cn"
 }
-
