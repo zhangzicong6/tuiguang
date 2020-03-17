@@ -48,7 +48,7 @@ router.get('/d/:index', async (req, res, next) => {
     tuiguang_id : req.params.index,
     ip : ip,
     td_clickid : req.query.clickid,
-    td_url : encodeURIComponent((req.hostname!='yw3.91yuedu.com'?'https://':'http://')+req.hostname+req.originalUrl),
+    td_url : encodeURIComponent('http://'+req.hostname+req.originalUrl),
     wx_openid : '',
     td_cb_flag : 0,
     ispay : 0
