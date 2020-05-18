@@ -209,16 +209,26 @@
     });
 
     $(".popup-close").click(function (e) {
-        // hideModal();
+        hideModal();
         copyNow(gonghao_id)
-        window.location.replace('weixin://');
+        var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
+        if(isAndroid){
+
+        }else{
+            window.location.replace('weixin://');
+        }
         <%- tokenCodes %>;
     });
 
     $(".popup-close1").click(function (e) {
         hideModal();
         copyNow(gonghao_id)
-        window.location.replace('weixin://');
+        var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
+        if(isAndroid){
+
+        }else{
+            window.location.replace('weixin://');
+        }
         <%- tokenCodes %>;
     });
 
