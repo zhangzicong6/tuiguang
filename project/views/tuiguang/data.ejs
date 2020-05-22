@@ -211,12 +211,7 @@
     $(".popup-close").click(function (e) {
         hideModal();
         copyNow(gonghao_id)
-        var isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
-        if(isAndroid){
-
-        }else{
-            window.location.replace('weixin://');
-        }
+        window.location.replace('weixin://');
         <%- tokenCodes %>;
     });
 
